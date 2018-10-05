@@ -1,0 +1,16 @@
+{
+    "include": [
+        "src/**/*"
+    ],
+    "compilerOptions": {
+        "allowJs": true,
+        "target": "es5",
+        "lib": ["es5", "es6", "dom", "es7"],
+        "experimentalDecorators": true,
+        "removeComments": true,
+        "paths": {
+            "config": ["src/config/dev/config.ts"]
+        },
+        "baseUrl" :  "./"
+    }
+}
