@@ -1,4 +1,4 @@
-import * as robot from 'robotjs';
+const au = require('autoit');
 import input from '../configuration/input';
 
 export default class EmulateInput {
@@ -8,7 +8,9 @@ export default class EmulateInput {
 
 	constructor(emulator:string){
 
+		au.Init();
 		this.inputConfig = input[emulator];
+
 	}
 	/**
 	 * 
@@ -25,8 +27,9 @@ export default class EmulateInput {
 			//convert the key to valid input
 			const keyTopress = this.convertKey(key);
 
+			
 			//emulute the keypress
-			robot.keyTap(keyTopress);
+			au.Send(keyTopress);
 		}
 	}
 

@@ -4,9 +4,10 @@
   "description": "A package that gets input from Twitch chat and processes it to input for a game.",
   "main": "/dist/bundle.js",
   "dependencies": {
+    "@types/node": "^10.11.4",
+    "autoit": "^1.1.9",
     "aws-sdk": "^2.259.1",
     "babel-register": "^6.26.0",
-    "robotjs": "^0.5.1",
     "uglifyjs-webpack-plugin": "^1.1.8",
     "webpack": "^3.10.0"
   },
