@@ -1,5 +1,5 @@
 import * as robot from 'robotjs';
-import validInput from '../configuration/validInput';
+import validInput from '../configuration/input';
 
 export default class EmulateInput {
 
@@ -20,7 +20,9 @@ export default class EmulateInput {
 
 			//convert the key to valid input
 			const keyTopress = this.convertKey(key);
-			this.emulateKey(keyTopress);
+
+			//emulute the keypress
+			robot.keyTap(keyTopress);
 		}
 	}
 
@@ -52,19 +54,6 @@ export default class EmulateInput {
 	static convertKey(key: string) {
 
 		return key.toLocaleLowerCase();
-	}
-
-	/**
-	 * 
-	 * actualy emulate the keypress
-	 * 
-	 * @param {string} key to emulate 
-	 * 
-	 * @return {void}
-	 */
-	static emulateKey(key: string) {
-
-		robot.keyTap(key);
 	}
 
 }
