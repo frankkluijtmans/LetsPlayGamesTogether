@@ -5,10 +5,14 @@ const input = {
 		down: "down",
 		left: "left",
 		right: "right",
-		a: "z",
-		b: "x",
-		start: "enter",
-		select: "q"
+		a: "v",
+		b: "c",
+		start: "space",
+		select: "enter",
+		y: 'x',
+		x: 'd',
+		l: 'a',
+		r: 's'
 	}
 }
 
