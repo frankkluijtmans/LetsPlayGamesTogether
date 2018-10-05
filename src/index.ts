@@ -1,5 +1,6 @@
 require('dotenv').config();
 import ChatInput from './classes/chatInput';
+import EmulateInput from './classes/emulateInput';
 
 new ChatInput(
     {
