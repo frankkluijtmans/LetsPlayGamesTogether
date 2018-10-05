@@ -6,13 +6,6 @@ export default class EmulateInput {
 	public hello: string;
 	private validKeys: Array<2>;
 
-    /**
-     * @param {} 
-     */
-	constructor() {
-
-	}
-
 	/**
 	 * 
 	 * start the process of emulating a keypress
@@ -21,7 +14,7 @@ export default class EmulateInput {
 	 * 
 	 * @return {void}
 	 */
-	emulateKeypress(key: string) {
+	static emulateKeypress(key: string) {
 
 		if (this.isValidateInput(key)) {
 
@@ -37,7 +30,7 @@ export default class EmulateInput {
 	 * 
 	 * @return {boolean}
 	 */
-	isValidateInput(key: string) {
+	static isValidateInput(key: string) {
 
 		//if not valid, then return false
 		if (validInput.indexOf(key.toLowerCase()) === -1) {
@@ -56,7 +49,7 @@ export default class EmulateInput {
 	 * 
 	 * @return{string} coverted key string 
 	 */
-	convertKey(key: string) {
+	static convertKey(key: string) {
 
 		return key.toLocaleLowerCase();
 	}
@@ -69,7 +62,7 @@ export default class EmulateInput {
 	 * 
 	 * @return {void}
 	 */
-	emulateKey(key: string) {
+	static emulateKey(key: string) {
 
 		robot.keyTap(key);
 	}
