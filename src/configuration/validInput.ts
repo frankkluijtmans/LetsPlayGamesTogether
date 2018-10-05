@@ -1,5 +1,5 @@
 //valid inputs
-const validInput = [
+const ValidInput = [
 	'up',
 	'down',
 	'left',
@@ -10,4 +10,4 @@ const validInput = [
 	'select'
 ];
 
-export default validInput;
+export default ValidInput;

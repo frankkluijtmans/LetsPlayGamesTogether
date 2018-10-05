@@ -1,5 +1,5 @@
 import * as robot from 'robotjs';
-import validInput from '../configuration/validInput';
+import ValidInput from '../configuration/validInput';
 
 export default class EmulateInput {
 
@@ -33,7 +33,7 @@ export default class EmulateInput {
 	static isValidateInput(key: string) {
 
 		//if not valid, then return false
-		if (validInput.indexOf(key.toLowerCase()) === -1) {
+		if (ValidInput.indexOf(key.toLowerCase()) === -1) {
 
 			return false;
 		};
