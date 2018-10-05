@@ -1,14 +1,14 @@
 //valid inputs
 const input = { 
 	snes:{
-		up: "",
-		down: "",
-		left: "",
-		right: "",
-		a: "",
-		b: "",
-		start: "",
-		select: ""
+		up: "up",
+		down: "down",
+		left: "left",
+		right: "right",
+		a: "z",
+		b: "x",
+		start: "enter",
+		select: "q"
 	}
 }
 
