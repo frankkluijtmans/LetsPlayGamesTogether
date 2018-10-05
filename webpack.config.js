@@ -1,4 +1,4 @@
-process.env.STAGE = ( process.env.STAGE ) ? process.env.STAGE : 'dev';
+process.env.STAGE = (process.env.STAGE) ? process.env.STAGE : 'dev';
 const debug = process.env.STAGE === 'dev' || process.env.debug === 'true';
 const webpack = require('webpack');
 
@@ -10,7 +10,7 @@ let babelOptions = {
 	]
 };
 
-if(!debug){
+if (!debug) {
 	loadPlugins.push(
 		new webpack.optimize.UglifyJsPlugin({
 			// Eliminate comments
@@ -59,6 +59,10 @@ module.exports = {
 						options: babelOptions
 					}
 				]
+			},
+			{
+				test: /\.node$/,
+				use: 'node-loader'
 			}
 		]
 	},
