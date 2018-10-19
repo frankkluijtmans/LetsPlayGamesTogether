@@ -1,11 +1,17 @@
-import * as robot from 'robotjs';
-import ValidInput from '../configuration/validInput';
+const au = require('autoit');
+import input from '../configuration/input';
 
 export default class EmulateInput {
 
 	public hello: string;
-	private validKeys: Array<2>;
+	private inputConfig: object;
 
+	constructor(emulator:string){
+
+		au.Init();
+		this.inputConfig = input[emulator];
+
+	}
 	/**
 	 * 
 	 * start the process of emulating a keypress
@@ -14,13 +20,16 @@ export default class EmulateInput {
 	 * 
 	 * @return {void}
 	 */
-	static emulateKeypress(key: string) {
+	emulateKeypress(key: string) {
 
 		if (this.isValidateInput(key)) {
 
 			//convert the key to valid input
 			const keyTopress = this.convertKey(key);
-			this.emulateKey(keyTopress);
+
+			
+			//emulute the keypress
+			au.Send(keyTopress);
 		}
 	}
 
@@ -30,10 +39,12 @@ export default class EmulateInput {
 	 * 
 	 * @return {boolean}
 	 */
-	static isValidateInput(key: string) {
+	isValidateInput(key: string) {
 
+		//get all keys of input config
+		const inputKeys = Object.keys(this.inputConfig);
 		//if not valid, then return false
-		if (ValidInput.indexOf(key.toLowerCase()) === -1) {
+		if (inputKeys.indexOf(key.toLowerCase()) === -1) {
 
 			return false;
 		};
@@ -49,22 +60,10 @@ export default class EmulateInput {
 	 * 
 	 * @return{string} coverted key string 
 	 */
-	static convertKey(key: string) {
+	convertKey(key: string) {
 
-		return key.toLocaleLowerCase();
-	}
-
-	/**
-	 * 
-	 * actualy emulate the keypress
-	 * 
-	 * @param {string} key to emulate 
-	 * 
-	 * @return {void}
-	 */
-	static emulateKey(key: string) {
-
-		robot.keyTap(key);
+		const emulatorKey = this.inputConfig[key];
+		return emulatorKey.toLocaleLowerCase();
 	}
 
 }
