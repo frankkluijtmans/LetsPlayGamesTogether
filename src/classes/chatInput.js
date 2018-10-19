@@ -2,6 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var tmi = require('tmi.js');
 var input_1 = require("../configuration/input");
+var emulateInput_1 = require("../classes/emulateInput");
+var emulateInput = new emulateInput_1.default('snes');
 var ChatInput = (function () {
     function ChatInput(opts) {
         this.commandPrefix = '!';
@@ -23,7 +25,7 @@ var ChatInput = (function () {
         if (message.substr(0, 1) === this.commandPrefix) {
             var parsedMessage = message.substr(1);
             if (this.knownCommands.indexOf(parsedMessage) > -1) {
-                console.log(parsedMessage);
+                this.emulateKeyPress(parsedMessage);
             }
         }
     };
@@ -40,6 +42,9 @@ var ChatInput = (function () {
         else {
             this.client.say(target, message);
         }
+    };
+    ChatInput.prototype.emulateKeyPress = function (command) {
+        emulateInput.emulateKeypress(command);
     };
     return ChatInput;
 }());

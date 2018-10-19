@@ -1,6 +1,8 @@
 const tmi = require('tmi.js');
 import BotOptions from '../interfaces/bot_options';
 import Input from '../configuration/input';
+import EmulateInput from '../classes/emulateInput';
+const emulateInput = new EmulateInput('snes');
 
 export default class ChatInput {
 
@@ -22,7 +24,7 @@ export default class ChatInput {
 
         // Connect to Twitch
         this.client.connect();
-        
+
         this.registerHandlers();
     }
 
@@ -33,7 +35,7 @@ export default class ChatInput {
      */
     registerHandlers() {
 
-        this.client.on('message', this.onMessageHandler.bind(this))  
+        this.client.on('message', this.onMessageHandler.bind(this))
         this.client.on('connected', this.onConnectedHandler)
         this.client.on('disconnected', this.onDisconnectedHandler)
     }
@@ -49,9 +51,9 @@ export default class ChatInput {
      * @return {void}
      */
     onMessageHandler(target: any, context: any, message: string, self: boolean) {
-        
+
         // Don't listen to the Chatbot's own messages
-        if(self) {
+        if (self) {
 
             return;
         }
@@ -59,10 +61,11 @@ export default class ChatInput {
         if (message.substr(0, 1) === this.commandPrefix) {
 
             let parsedMessage = message.substr(1);
-            
-            if(this.knownCommands.indexOf(parsedMessage) > -1) {
-                
-                console.log(parsedMessage);
+
+            if (this.knownCommands.indexOf(parsedMessage) > -1) {
+
+                //input is valid, so emulate keypress
+                this.emulateKeyPress(parsedMessage);
             }
         }
     }
@@ -101,14 +104,19 @@ export default class ChatInput {
      * 
      * @return {void}
      */
-    sendMessage (target: any, context: any, message: string) {
-    
+    sendMessage(target: any, context: any, message: string) {
+
         if (context['message-type'] === 'whisper') {
 
-          this.client.whisper(target, message)
+            this.client.whisper(target, message)
         } else {
 
-          this.client.say(target, message)
+            this.client.say(target, message)
         }
+    }
+
+    emulateKeyPress(command: string) {
+
+        emulateInput.emulateKeypress(command);
     }
 };
