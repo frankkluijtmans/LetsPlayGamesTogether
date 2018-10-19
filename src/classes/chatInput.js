@@ -1,12 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var tmi = require('tmi.js');
+var input_1 = require("../configuration/input");
 var ChatInput = (function () {
     function ChatInput(opts) {
         this.commandPrefix = '!';
         this.opts = opts;
         this.client = new tmi.client(this.opts);
-        this.knownCommands = ['left', 'right', 'up', 'down'];
+        this.knownCommands = Object.keys(input_1.default.snes);
         this.client.connect();
         this.registerHandlers();
     }

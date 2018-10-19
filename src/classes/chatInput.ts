@@ -1,6 +1,6 @@
 const tmi = require('tmi.js');
 import BotOptions from '../interfaces/bot_options';
-import ValidInput from '../configuration/validInput';
+import Input from '../configuration/input';
 
 export default class ChatInput {
 
@@ -18,7 +18,7 @@ export default class ChatInput {
         this.commandPrefix = '!';
         this.opts = opts;
         this.client = new tmi.client(this.opts);
-        this.knownCommands = ValidInput;
+        this.knownCommands = Object.keys(Input.snes);
 
         // Connect to Twitch
         this.client.connect();
